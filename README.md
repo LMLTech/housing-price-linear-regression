@@ -10,6 +10,7 @@
 
 Bên cạnh phần Machine Learning, dự án được phát triển thành một **Web Application** sử dụng **FastAPI** cho Backend và **Angular** cho Frontend, cho phép người dùng nhập thông tin bất động sản và thực hiện dự báo giá trực tiếp trên giao diện web.
 
+Link kaggel: https://www.kaggle.com/datasets/cresht2606/vietnam-real-estate-datasets-catalyst
 ---
 
 ## 🎯 Mục tiêu dự án
@@ -37,7 +38,7 @@ RealEstatePrediction/
 │
 ├── data/
 │   ├── raw/
-│   │   └── house_buying_dec29th_2025.csv
+│   │   └── house_buying_dec29th_2025.csv em đã đổi thành dataset_BDS.xlsx
 │   │       # Dữ liệu bất động sản ban đầu
 │   │
 │   └── processed/
