@@ -37,12 +37,16 @@ def clean_domain_bounds(df):
     # Loại bỏ các dòng không có giá mục tiêu
     if 'price_million_vnd' in df_clean.columns:
         df_clean['price_million_vnd'] = pd.to_numeric(df_clean['price_million_vnd'], errors='coerce')
+        # Fix error in dataset: price is also multiplied by 10
+        df_clean['price_million_vnd'] = df_clean['price_million_vnd'] / 10
         df_clean = df_clean.dropna(subset=['price_million_vnd'])
         df_clean = df_clean[df_clean['price_million_vnd'] > 0]
 
     # Kiểm tra diện tích
     if 'area_m2' in df_clean.columns:
         df_clean['area_m2'] = pd.to_numeric(df_clean['area_m2'], errors='coerce')
+        # Fix error in dataset: area is multiplied by 10
+        df_clean['area_m2'] = df_clean['area_m2'] / 10
 
     # Chuyển đổi kiểu dữ liệu cho các biến kết cấu
     for col in ['bedrooms', 'bathrooms', 'floors']:
@@ -51,10 +55,10 @@ def clean_domain_bounds(df):
 
     # Lọc ngưỡng vật lý miền bất động sản (tránh lỗi gõ gõ nhầm 62 triệu m2 hay 772 triệu tầng)
     if 'area_m2' in df_clean.columns:
-        df_clean = df_clean[(df_clean['area_m2'] > 0) & (df_clean['area_m2'] <= 2000)]
+        df_clean = df_clean[(df_clean['area_m2'] > 0) & (df_clean['area_m2'] <= 200)]
 
     if 'price_million_vnd' in df_clean.columns:
-        df_clean = df_clean[df_clean['price_million_vnd'] <= 500000]
+        df_clean = df_clean[df_clean['price_million_vnd'] <= 50000]
 
     # Chuẩn hóa biến Frontage về dạng 0/1 integer
     if 'frontage' in df_clean.columns:

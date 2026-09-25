@@ -52,10 +52,7 @@ class PredictionService:
         )
 
         # Step 3: Inference via loaded pipeline
-        y_pred_log = pipeline.predict(df_proc)[0]
-
-        # Convert back from log scale
-        y_pred_raw = np.expm1(y_pred_log)
+        y_pred_raw = pipeline.predict(df_proc)[0]
 
         # Step 4: Post-processing non-negativity constraint
         y_pred_clipped = float(np.maximum(y_pred_raw, 0.0))
